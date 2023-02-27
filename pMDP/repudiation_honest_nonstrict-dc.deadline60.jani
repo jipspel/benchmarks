@@ -1,0 +1,1208 @@
+﻿{
+	"jani-version": 1,
+	"name": "repudiation_honest_nonstrict-ppta",
+	"type": "mdp",
+	"features": [ "derived-operators" ],
+	"actions": [
+		{
+			"name": "ack"
+		},
+		{
+			"name": "decode"
+		},
+		{
+			"name": "decoded_last"
+		},
+		{
+			"name": "decoded_random"
+		},
+		{
+			"name": "error"
+		},
+		{
+			"name": "finished"
+		},
+		{
+			"name": "message"
+		},
+		{
+			"name": "req"
+		},
+		{
+			"name": "stop"
+		},
+		{
+			"name": "tick"
+		}
+	],
+	"constants": [ {
+		"name": "pL",
+		"type": "real"
+	} ],
+	"variables": [
+		{
+			"name": "terminated_successfully",
+			"type": "bool",
+			"transient": true,
+			"initial-value": false
+		},
+		{
+			"name": "o",
+			"type": {
+				"kind": "bounded",
+				"base": "int",
+				"lower-bound": 0,
+				"upper-bound": 12
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "x",
+			"type": {
+				"kind": "bounded",
+				"base": "int",
+				"lower-bound": 0,
+				"upper-bound": 6
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "r",
+			"type": {
+				"kind": "bounded",
+				"base": "int",
+				"lower-bound": 0,
+				"upper-bound": 3
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "y",
+			"type": {
+				"kind": "bounded",
+				"base": "int",
+				"lower-bound": 0,
+				"upper-bound": 5
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "global_time",
+			"type": {
+				"kind": "bounded",
+				"base": "int",
+				"lower-bound": 0,
+				"upper-bound": 61
+			},
+			"initial-value": 0
+		}
+	],
+	"properties": [ {
+		"name": "deadline60",
+		"expression": {
+			"op": "filter",
+			"fun": "values",
+			"values": {
+				"op": "≤",
+				"left": {
+					"op": "Pmax",
+					"exp": {
+						"op": "U",
+						"left": {
+							"op": "≤",
+							"left": "global_time",
+							"right": 60
+						},
+						"right": "terminated_successfully"
+					}
+				},
+				"right": {
+					"op": "/",
+					"left": 998,
+					"right": 1000
+				}
+			},
+			"states": {
+				"op": "initial"
+			}
+		}
+	} ],
+	"automata": [
+		{
+			"name": "originator",
+			"locations": [ {
+				"name": "l",
+				"transient-values": [
+					{
+						"ref": "terminated_successfully",
+						"value": {
+							"op": "=",
+							"left": "o",
+							"right": 8
+						},
+						"comment": "terminated_successfully <- (o = 8)"
+					}
+				]
+			} ],
+			"initial-locations": [ "l" ],
+			"edges": [
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 8
+						},
+						"comment": "(o = 8)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "o",
+							"value": 8,
+							"comment": "o <- 8"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 9
+						},
+						"comment": "(o = 9)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "o",
+							"value": 9,
+							"comment": "o <- 9"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 10
+						},
+						"comment": "(o = 10)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "o",
+							"value": 10,
+							"comment": "o <- 10"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "o",
+								"right": 2
+							},
+							"right": {
+								"op": "≥",
+								"left": "x",
+								"right": 4
+							}
+						},
+						"comment": "((o = 2) & (x >= 4))"
+					},
+					"destinations": [
+						{
+							"location": "l",
+							"probability": {
+								"exp": "pL",
+								"comment": "pL"
+							},
+							"assignments": [
+								{
+									"ref": "o",
+									"value": 1,
+									"comment": "o <- 1"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						},
+						{
+							"location": "l",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								},
+								"comment": "(1 - pL)"
+							},
+							"assignments": [
+								{
+									"ref": "o",
+									"value": 3,
+									"comment": "o <- 3"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "l",
+					"action": "ack",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "o",
+								"right": 2
+							},
+							"right": {
+								"op": "∧",
+								"left": {
+									"op": "≥",
+									"left": "x",
+									"right": 1
+								},
+								"right": {
+									"op": "≤",
+									"left": "x",
+									"right": 4
+								}
+							}
+						},
+						"comment": "((o = 2) & ((x >= 1) & (x <= 4)))"
+					},
+					"destinations": [
+						{
+							"location": "l",
+							"probability": {
+								"exp": "pL",
+								"comment": "pL"
+							},
+							"assignments": [
+								{
+									"ref": "o",
+									"value": 1,
+									"comment": "o <- 1"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						},
+						{
+							"location": "l",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								},
+								"comment": "(1 - pL)"
+							},
+							"assignments": [
+								{
+									"ref": "o",
+									"value": 3,
+									"comment": "o <- 3"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "l",
+					"action": "ack",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "o",
+								"right": 11
+							},
+							"right": {
+								"op": "∧",
+								"left": {
+									"op": "≥",
+									"left": "x",
+									"right": 1
+								},
+								"right": {
+									"op": "≤",
+									"left": "x",
+									"right": 4
+								}
+							}
+						},
+						"comment": "((o = 11) & ((x >= 1) & (x <= 4)))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "o",
+								"value": 1,
+								"comment": "o <- 1"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "ack",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "o",
+								"right": 12
+							},
+							"right": {
+								"op": "∧",
+								"left": {
+									"op": "≥",
+									"left": "x",
+									"right": 1
+								},
+								"right": {
+									"op": "≤",
+									"left": "x",
+									"right": 4
+								}
+							}
+						},
+						"comment": "((o = 12) & ((x >= 1) & (x <= 4)))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "o",
+								"value": 3,
+								"comment": "o <- 3"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "decode",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 2
+						},
+						"comment": "(o = 2)"
+					},
+					"destinations": [
+						{
+							"location": "l",
+							"probability": {
+								"exp": "pL",
+								"comment": "pL"
+							},
+							"assignments": [ {
+								"ref": "o",
+								"value": 6,
+								"comment": "o <- 6"
+							} ]
+						},
+						{
+							"location": "l",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								},
+								"comment": "(1 - pL)"
+							},
+							"assignments": [ {
+								"ref": "o",
+								"value": 7,
+								"comment": "o <- 7"
+							} ]
+						}
+					]
+				},
+				{
+					"location": "l",
+					"action": "decoded_last",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 7
+						},
+						"comment": "(o = 7)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "o",
+							"value": 12,
+							"comment": "o <- 12"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "decoded_random",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 6
+						},
+						"comment": "(o = 6)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "o",
+							"value": 11,
+							"comment": "o <- 11"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "error",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 5
+						},
+						"comment": "(o = 5)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "o",
+							"value": 10,
+							"comment": "o <- 10"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "finished",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 3
+						},
+						"comment": "(o = 3)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "o",
+								"value": 8,
+								"comment": "o <- 8"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "message",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "o",
+								"right": 1
+							},
+							"right": {
+								"op": "≤",
+								"left": "x",
+								"right": 0
+							}
+						},
+						"comment": "((o = 1) & (x <= 0))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "o",
+							"value": 2,
+							"comment": "o <- 2"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "req",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 0
+						},
+						"comment": "(o = 0)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "o",
+								"value": 1,
+								"comment": "o <- 1"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "stop",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "o",
+							"right": 4
+						},
+						"comment": "(o = 4)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "o",
+							"value": 9,
+							"comment": "o <- 9"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "stop",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "o",
+								"right": 11
+							},
+							"right": {
+								"op": "≥",
+								"left": "x",
+								"right": 4
+							}
+						},
+						"comment": "((o = 11) & (x >= 4))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "o",
+								"value": 9,
+								"comment": "o <- 9"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "stop",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "o",
+								"right": 12
+							},
+							"right": {
+								"op": "≥",
+								"left": "x",
+								"right": 4
+							}
+						},
+						"comment": "((o = 12) & (x >= 4))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "o",
+								"value": 10,
+								"comment": "o <- 10"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "tick",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "∧",
+								"left": {
+									"op": "∧",
+									"left": {
+										"op": "∧",
+										"left": {
+											"op": "∧",
+											"left": {
+												"op": "∧",
+												"left": {
+													"op": "∨",
+													"left": {
+														"op": "≠",
+														"left": "o",
+														"right": 12
+													},
+													"right": {
+														"op": "<",
+														"left": "x",
+														"right": 5
+													}
+												},
+												"right": {
+													"op": "∨",
+													"left": {
+														"op": "≠",
+														"left": "o",
+														"right": 2
+													},
+													"right": {
+														"op": "<",
+														"left": "x",
+														"right": 5
+													}
+												}
+											},
+											"right": {
+												"op": "∨",
+												"left": {
+													"op": "≠",
+													"left": "o",
+													"right": 4
+												},
+												"right": {
+													"op": "<",
+													"left": "x",
+													"right": 0
+												}
+											}
+										},
+										"right": {
+											"op": "∨",
+											"left": {
+												"op": "≠",
+												"left": "o",
+												"right": 11
+											},
+											"right": {
+												"op": "<",
+												"left": "x",
+												"right": 5
+											}
+										}
+									},
+									"right": {
+										"op": "∨",
+										"left": {
+											"op": "≠",
+											"left": "o",
+											"right": 1
+										},
+										"right": {
+											"op": "<",
+											"left": "x",
+											"right": 0
+										}
+									}
+								},
+								"right": {
+									"op": "∨",
+									"left": {
+										"op": "≠",
+										"left": "o",
+										"right": 5
+									},
+									"right": {
+										"op": "<",
+										"left": "x",
+										"right": 0
+									}
+								}
+							},
+							"right": {
+								"op": "∨",
+								"left": {
+									"op": "≠",
+									"left": "o",
+									"right": 3
+								},
+								"right": {
+									"op": "<",
+									"left": "x",
+									"right": 0
+								}
+							}
+						},
+						"comment": "((((((((((((((o = 0) => true) & ((o = 1) => (x <= 0))) & ((o = 2) => (x <= 5))) & ((o = 3) => (x <= 0))) & ((o = 4) => (x <= 0))) & ((o = 5) => (x <= 0))) & ((o = 6) => true)) & ((o = 7) => true)) & ((o = 8) => true)) & ((o = 9) => true)) & ((o = 10) => true)) & ((o = 11) => (x <= 5))) & ((o = 12) => (x <= 5)))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "terminated_successfully",
+							"value": {
+								"op": "=",
+								"left": "o",
+								"right": 8
+							},
+							"index": 1,
+							"comment": "terminated_successfully <- (o = 8)"
+						} ]
+					} ]
+				}
+			]
+		},
+		{
+			"name": "recipient",
+			"locations": [ {
+				"name": "l"
+			} ],
+			"initial-locations": [ "l" ],
+			"edges": [
+				{
+					"location": "l",
+					"action": "ack",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "r",
+								"right": 2
+							},
+							"right": {
+								"op": "∧",
+								"left": {
+									"op": "≥",
+									"left": "y",
+									"right": 1
+								},
+								"right": {
+									"op": "≤",
+									"left": "y",
+									"right": 4
+								}
+							}
+						},
+						"comment": "((r = 2) & ((y >= 1) & (y <= 4)))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "r",
+								"value": 1,
+								"comment": "r <- 1"
+							},
+							{
+								"ref": "y",
+								"value": 0,
+								"comment": "y <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "decode",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "r",
+							"right": 3
+						},
+						"comment": "(r = 3)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "r",
+							"value": 3,
+							"comment": "r <- 3"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "decoded_last",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "r",
+							"right": 3
+						},
+						"comment": "(r = 3)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "r",
+							"value": 3,
+							"comment": "r <- 3"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "decoded_random",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "r",
+							"right": 3
+						},
+						"comment": "(r = 3)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "r",
+							"value": 3,
+							"comment": "r <- 3"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "finished",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "r",
+							"right": 1
+						},
+						"comment": "(r = 1)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "r",
+							"value": 3,
+							"comment": "r <- 3"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "message",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "r",
+							"right": 1
+						},
+						"comment": "(r = 1)"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "r",
+								"value": 2,
+								"comment": "r <- 2"
+							},
+							{
+								"ref": "y",
+								"value": 0,
+								"comment": "y <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "req",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "r",
+								"right": 0
+							},
+							"right": {
+								"op": "=",
+								"left": "y",
+								"right": 0
+							}
+						},
+						"comment": "((r = 0) & (y = 0))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "r",
+							"value": 1,
+							"comment": "r <- 1"
+						} ]
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "tick",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "∨",
+								"left": {
+									"op": "≠",
+									"left": "r",
+									"right": 0
+								},
+								"right": {
+									"op": "<",
+									"left": "y",
+									"right": 0
+								}
+							},
+							"right": {
+								"op": "∨",
+								"left": {
+									"op": "≠",
+									"left": "r",
+									"right": 2
+								},
+								"right": {
+									"op": "<",
+									"left": "y",
+									"right": 4
+								}
+							}
+						},
+						"comment": "(((((r = 0) => (y <= 0)) & ((r = 1) => true)) & ((r = 2) => (y <= 4))) & ((r = 3) => true))"
+					},
+					"destinations": [ {
+						"location": "l"
+					} ]
+				}
+			]
+		},
+		{
+			"name": "GlobalSync",
+			"locations": [ {
+				"name": "loop_loc"
+			} ],
+			"initial-locations": [ "loop_loc" ],
+			"edges": [
+				{
+					"location": "loop_loc",
+					"action": "tick",
+					"destinations": [ {
+						"location": "loop_loc",
+						"assignments": [
+							{
+								"ref": "x",
+								"value": {
+									"op": "min",
+									"left": {
+										"op": "+",
+										"left": "x",
+										"right": 1
+									},
+									"right": 6
+								}
+							},
+							{
+								"ref": "y",
+								"value": {
+									"op": "min",
+									"left": {
+										"op": "+",
+										"left": "y",
+										"right": 1
+									},
+									"right": 5
+								}
+							},
+							{
+								"ref": "global_time",
+								"value": {
+									"op": "min",
+									"left": {
+										"op": "+",
+										"left": "global_time",
+										"right": 1
+									},
+									"right": 61
+								}
+							}
+						]
+					} ]
+				}
+			]
+		}
+	],
+	"system": {
+		"elements": [
+			{
+				"automaton": "originator"
+			},
+			{
+				"automaton": "recipient"
+			},
+			{
+				"automaton": "GlobalSync"
+			}
+		],
+		"syncs": [
+			{
+				"synchronise": [
+					"ack",
+					"ack",
+					null
+				],
+				"result": "ack"
+			},
+			{
+				"synchronise": [
+					"decode",
+					"decode",
+					null
+				],
+				"result": "decode"
+			},
+			{
+				"synchronise": [
+					"decoded_last",
+					"decoded_last",
+					null
+				],
+				"result": "decoded_last"
+			},
+			{
+				"synchronise": [
+					"decoded_random",
+					"decoded_random",
+					null
+				],
+				"result": "decoded_random"
+			},
+			{
+				"synchronise": [
+					"error",
+					null,
+					null
+				],
+				"result": "error"
+			},
+			{
+				"synchronise": [
+					"finished",
+					"finished",
+					null
+				],
+				"result": "finished"
+			},
+			{
+				"synchronise": [
+					"message",
+					"message",
+					null
+				],
+				"result": "message"
+			},
+			{
+				"synchronise": [
+					"req",
+					"req",
+					null
+				],
+				"result": "req"
+			},
+			{
+				"synchronise": [
+					"stop",
+					null,
+					null
+				],
+				"result": "stop"
+			},
+			{
+				"synchronise": [
+					"tick",
+					"tick",
+					"tick"
+				],
+				"result": "tick"
+			}
+		]
+	}
+}

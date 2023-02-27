@@ -1,0 +1,530 @@
+﻿{
+	"jani-version": 1,
+	"name": "zeroconf-ppta_incorrect",
+	"type": "mdp",
+	"features": [ "derived-operators" ],
+	"constants": [
+		{
+			"name": "pU",
+			"type": "real"
+		},
+		{
+			"name": "pL",
+			"type": "real"
+		}
+	],
+	"variables": [ {
+		"name": "target",
+		"type": "bool",
+		"transient": true,
+		"initial-value": false
+	} ],
+	"properties": [ {
+		"name": "target",
+		"expression": {
+			"op": "filter",
+			"fun": "∀",
+			"values": {
+				"op": "≤",
+				"left": {
+					"op": "Pmax",
+					"exp": {
+						"op": "F",
+						"exp": "target"
+					}
+				},
+				"right": {
+					"op": "/",
+					"left": 13,
+					"right": 10000
+				}
+			},
+			"states": {
+				"op": "initial"
+			}
+		}
+	} ],
+	"automata": [
+		{
+			"name": "Automaton",
+			"locations": [
+				{
+					"name": "loc_0"
+				},
+				{
+					"name": "loc_1"
+				},
+				{
+					"name": "loc_2",
+					"transient-values": [
+						{
+							"ref": "target",
+							"value": true
+						}
+					]
+				},
+				{
+					"name": "loc_3"
+				},
+				{
+					"name": "loc_4"
+				},
+				{
+					"name": "loc_5"
+				},
+				{
+					"name": "loc_6"
+				},
+				{
+					"name": "loc_7"
+				},
+				{
+					"name": "loc_8"
+				},
+				{
+					"name": "loc_9"
+				},
+				{
+					"name": "loc_10"
+				},
+				{
+					"name": "loc_11"
+				},
+				{
+					"name": "loc_12"
+				},
+				{
+					"name": "loc_13"
+				},
+				{
+					"name": "loc_14"
+				},
+				{
+					"name": "loc_15"
+				},
+				{
+					"name": "loc_16"
+				},
+				{
+					"name": "loc_17"
+				},
+				{
+					"name": "loc_18"
+				},
+				{
+					"name": "loc_19"
+				},
+				{
+					"name": "loc_20"
+				},
+				{
+					"name": "loc_21"
+				},
+				{
+					"name": "loc_22"
+				},
+				{
+					"name": "loc_23"
+				},
+				{
+					"name": "loc_24"
+				}
+			],
+			"initial-locations": [ "loc_0" ],
+			"edges": [
+				{
+					"location": "loc_0",
+					"destinations": [ {
+						"location": "loc_12"
+					} ]
+				},
+				{
+					"location": "loc_1",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_2",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_3",
+					"destinations": [ {
+						"location": "loc_2"
+					} ]
+				},
+				{
+					"location": "loc_4",
+					"destinations": [
+						{
+							"location": "loc_3",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_21",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_5",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_5",
+					"destinations": [
+						{
+							"location": "loc_3",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_6",
+					"destinations": [
+						{
+							"location": "loc_4",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_22",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_7",
+					"destinations": [
+						{
+							"location": "loc_4",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_8",
+					"destinations": [
+						{
+							"location": "loc_6",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_23",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_9",
+					"destinations": [
+						{
+							"location": "loc_6",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_10",
+					"destinations": [
+						{
+							"location": "loc_8",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_24",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_11",
+					"destinations": [
+						{
+							"location": "loc_8",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_12",
+					"destinations": [
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pU"
+								}
+							}
+						},
+						{
+							"location": "loc_10",
+							"probability": {
+								"exp": "pU"
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_13",
+					"destinations": [ {
+						"location": "loc_12"
+					} ]
+				},
+				{
+					"location": "loc_14",
+					"destinations": [ {
+						"location": "loc_12"
+					} ]
+				},
+				{
+					"location": "loc_15",
+					"destinations": [ {
+						"location": "loc_12"
+					} ]
+				},
+				{
+					"location": "loc_16",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_16",
+					"destinations": [ {
+						"location": "loc_12"
+					} ]
+				},
+				{
+					"location": "loc_17",
+					"destinations": [
+						{
+							"location": "loc_8",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_13",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_18",
+					"destinations": [
+						{
+							"location": "loc_6",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_14",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_19",
+					"destinations": [
+						{
+							"location": "loc_4",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_15",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_20",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_20",
+					"destinations": [
+						{
+							"location": "loc_3",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_16",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_21",
+					"destinations": [ {
+						"location": "loc_5"
+					} ]
+				},
+				{
+					"location": "loc_21",
+					"destinations": [ {
+						"location": "loc_20"
+					} ]
+				},
+				{
+					"location": "loc_22",
+					"destinations": [ {
+						"location": "loc_7"
+					} ]
+				},
+				{
+					"location": "loc_22",
+					"destinations": [ {
+						"location": "loc_19"
+					} ]
+				},
+				{
+					"location": "loc_23",
+					"destinations": [ {
+						"location": "loc_9"
+					} ]
+				},
+				{
+					"location": "loc_23",
+					"destinations": [ {
+						"location": "loc_18"
+					} ]
+				},
+				{
+					"location": "loc_24",
+					"destinations": [ {
+						"location": "loc_11"
+					} ]
+				},
+				{
+					"location": "loc_24",
+					"destinations": [ {
+						"location": "loc_17"
+					} ]
+				}
+			]
+		}
+	],
+	"system": {
+		"elements": [ {
+			"automaton": "Automaton"
+		} ]
+	}
+}

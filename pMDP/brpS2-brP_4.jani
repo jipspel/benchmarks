@@ -1,0 +1,203 @@
+﻿{
+	"jani-version": 1,
+	"name": "brpS2-ppta_P_4",
+	"type": "mdp",
+	"features": [ "derived-operators" ],
+	"constants": [
+		{
+			"name": "pK",
+			"type": "real"
+		},
+		{
+			"name": "pL",
+			"type": "real"
+		}
+	],
+	"variables": [ {
+		"name": "target",
+		"type": "bool",
+		"transient": true,
+		"initial-value": false
+	} ],
+	"properties": [ {
+		"name": "target",
+		"expression": {
+			"op": "filter",
+			"fun": "∀",
+			"values": {
+				"op": "≤",
+				"left": {
+					"op": "Pmax",
+					"exp": {
+						"op": "F",
+						"exp": "target"
+					}
+				},
+				"right": {
+					"op": "/",
+					"left": 1,
+					"right": 125000
+				}
+			},
+			"states": {
+				"op": "initial"
+			}
+		}
+	} ],
+	"automata": [
+		{
+			"name": "Automaton",
+			"locations": [
+				{
+					"name": "loc_0"
+				},
+				{
+					"name": "loc_1"
+				},
+				{
+					"name": "loc_2",
+					"transient-values": [
+						{
+							"ref": "target",
+							"value": true
+						}
+					]
+				},
+				{
+					"name": "loc_3"
+				},
+				{
+					"name": "loc_4"
+				},
+				{
+					"name": "loc_5"
+				},
+				{
+					"name": "loc_6"
+				},
+				{
+					"name": "loc_7"
+				},
+				{
+					"name": "loc_8"
+				},
+				{
+					"name": "loc_9"
+				}
+			],
+			"initial-locations": [ "loc_0" ],
+			"edges": [
+				{
+					"location": "loc_0",
+					"destinations": [ {
+						"location": "loc_9"
+					} ]
+				},
+				{
+					"location": "loc_1",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_2",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_3",
+					"destinations": [ {
+						"location": "loc_2"
+					} ]
+				},
+				{
+					"location": "loc_4",
+					"destinations": [
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": "pK"
+							}
+						},
+						{
+							"location": "loc_3",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pK"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_5",
+					"destinations": [ {
+						"location": "loc_4"
+					} ]
+				},
+				{
+					"location": "loc_6",
+					"destinations": [
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": "pK"
+							}
+						},
+						{
+							"location": "loc_5",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pK"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_7",
+					"destinations": [ {
+						"location": "loc_6"
+					} ]
+				},
+				{
+					"location": "loc_8",
+					"destinations": [
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": "pK"
+							}
+						},
+						{
+							"location": "loc_7",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pK"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_9",
+					"destinations": [ {
+						"location": "loc_8"
+					} ]
+				}
+			]
+		}
+	],
+	"system": {
+		"elements": [ {
+			"automaton": "Automaton"
+		} ]
+	}
+}

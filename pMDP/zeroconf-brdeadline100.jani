@@ -1,0 +1,326 @@
+﻿{
+	"jani-version": 1,
+	"name": "zeroconf-ppta_deadline100",
+	"type": "mdp",
+	"features": [ "derived-operators" ],
+	"constants": [
+		{
+			"name": "pU",
+			"type": "real"
+		},
+		{
+			"name": "pL",
+			"type": "real"
+		}
+	],
+	"variables": [ {
+		"name": "target",
+		"type": "bool",
+		"transient": true,
+		"initial-value": false
+	} ],
+	"properties": [ {
+		"name": "target",
+		"expression": {
+			"op": "filter",
+			"fun": "∀",
+			"values": {
+				"op": "≤",
+				"left": {
+					"op": "Pmax",
+					"exp": {
+						"op": "F",
+						"exp": "target"
+					}
+				},
+				"right": {
+					"op": "/",
+					"left": 65,
+					"right": 100000
+				}
+			},
+			"states": {
+				"op": "initial"
+			}
+		}
+	} ],
+	"automata": [
+		{
+			"name": "Automaton",
+			"locations": [
+				{
+					"name": "loc_0"
+				},
+				{
+					"name": "loc_1"
+				},
+				{
+					"name": "loc_2",
+					"transient-values": [
+						{
+							"ref": "target",
+							"value": true
+						}
+					]
+				},
+				{
+					"name": "loc_3"
+				},
+				{
+					"name": "loc_4"
+				},
+				{
+					"name": "loc_5"
+				},
+				{
+					"name": "loc_6"
+				},
+				{
+					"name": "loc_7"
+				},
+				{
+					"name": "loc_8"
+				},
+				{
+					"name": "loc_9"
+				},
+				{
+					"name": "loc_10"
+				},
+				{
+					"name": "loc_11"
+				},
+				{
+					"name": "loc_12"
+				}
+			],
+			"initial-locations": [ "loc_0" ],
+			"edges": [
+				{
+					"location": "loc_0",
+					"destinations": [ {
+						"location": "loc_12"
+					} ]
+				},
+				{
+					"location": "loc_1",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_2",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_3",
+					"destinations": [ {
+						"location": "loc_2"
+					} ]
+				},
+				{
+					"location": "loc_4",
+					"destinations": [
+						{
+							"location": "loc_3",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_5",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_5",
+					"destinations": [ {
+						"location": "loc_1"
+					} ]
+				},
+				{
+					"location": "loc_5",
+					"destinations": [
+						{
+							"location": "loc_3",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_6",
+					"destinations": [
+						{
+							"location": "loc_4",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_7",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_7",
+					"destinations": [
+						{
+							"location": "loc_4",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_8",
+					"destinations": [
+						{
+							"location": "loc_6",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_9",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_9",
+					"destinations": [
+						{
+							"location": "loc_6",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_10",
+					"destinations": [
+						{
+							"location": "loc_8",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_11",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_11",
+					"destinations": [
+						{
+							"location": "loc_8",
+							"probability": {
+								"exp": "pL"
+							}
+						},
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pL"
+								}
+							}
+						}
+					]
+				},
+				{
+					"location": "loc_12",
+					"destinations": [
+						{
+							"location": "loc_1",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "pU"
+								}
+							}
+						},
+						{
+							"location": "loc_10",
+							"probability": {
+								"exp": "pU"
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"system": {
+		"elements": [ {
+			"automaton": "Automaton"
+		} ]
+	}
+}

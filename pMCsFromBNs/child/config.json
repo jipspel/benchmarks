@@ -1,0 +1,24 @@
+[
+  {
+		"memory_bound": [1],
+		"constants": {
+		},
+		"drn": "child_240.drn",
+		"prop": [
+			{
+				"type": "probability",
+				"dir": "min",
+				"bound": 0.43,
+				"label": "CO2Report0"
+			},
+			{
+				"type": "probability",
+				"dir": "min",
+				"bound": null,
+				"label": "CO2Report0"
+			}
+		],
+		"learning_rate": [0.1],
+		"method": ["adam", "radam","momentum-sign", "qcqp", "pso"]
+	}
+]

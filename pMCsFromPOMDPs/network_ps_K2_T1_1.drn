@@ -1,0 +1,654 @@
+// Exported by storm
+// Original model type: DTMC
+@type: DTMC
+@parameters
+p1_0 p2_0 p3_0 p4_0 p5_0 p6_0 p7_0 p8_0 p9_0 p25_0 p26_0 p27_0 p28_0 p29_0 p30_0 p31_0 p32_0 p33_0 
+@placeholders
+$35 : (p33_0)/(1)
+$34 : (-1 * (p33_0+(-1)))/(1)
+$33 : (p32_0)/(1)
+$31 : (p31_0)/(1)
+$30 : (-1 * (p31_0+(-1)))/(1)
+$29 : (p30_0)/(1)
+$27 : (p29_0)/(1)
+$26 : (-1 * (p29_0+(-1)))/(1)
+$24 : (-1 * (p28_0+(-1)))/(1)
+$23 : (p27_0)/(1)
+$10 : (p6_0)/(1)
+$20 : (-1 * (p26_0+(-1)))/(1)
+$18 : (-1 * (p25_0+(-1)))/(1)
+$16 : (p9_0)/(1)
+$15 : (-1 * (p8_0+(-1)))/(1)
+$14 : (p8_0)/(1)
+$17 : (-1 * (p9_0+(-1)))/(1)
+$11 : (-1 * (p6_0+(-1)))/(1)
+$13 : (-1 * (p7_0+(-1)))/(1)
+$12 : (p7_0)/(1)
+$22 : (-1 * (p27_0+(-1)))/(1)
+$8 : (p5_0)/(1)
+$7 : (-1 * (p4_0+(-1)))/(1)
+$9 : (-1 * (p5_0+(-1)))/(1)
+$3 : (-1 * (p2_0+(-1)))/(1)
+$6 : (p4_0)/(1)
+$5 : (-1 * (p3_0+(-1)))/(1)
+$25 : (p28_0)/(1)
+$1 : (-1 * (p1_0+(-1)))/(1)
+$32 : (-1 * (p32_0+(-1)))/(1)
+$21 : (p26_0)/(1)
+$4 : (p3_0)/(1)
+$2 : (p2_0)/(1)
+$28 : (-1 * (p30_0+(-1)))/(1)
+$19 : (p25_0)/(1)
+$0 : (p1_0)/(1)
+@reward_models
+packets_sent 
+@nr_states
+157
+@nr_choices
+157
+@model
+state 0 [0] init
+	action 0 [0]
+		1 : 1/400
+		2 : 1/400
+		3 : 1/400
+		4 : 1/400
+		5 : 3/400
+		6 : 3/400
+		7 : 3/400
+		8 : 3/400
+		9 : 3/200
+		10 : 3/200
+		11 : 3/200
+		12 : 3/200
+		13 : 3/400
+		14 : 3/400
+		15 : 3/400
+		16 : 3/400
+		17 : 9/400
+		18 : 9/400
+		19 : 9/400
+		20 : 9/400
+		21 : 9/200
+		22 : 9/200
+		23 : 9/200
+		24 : 9/200
+		25 : 3/200
+		26 : 3/200
+		27 : 3/200
+		28 : 3/200
+		29 : 9/200
+		30 : 9/200
+		31 : 9/200
+		32 : 9/200
+		33 : 9/100
+		34 : 9/100
+		35 : 9/100
+		36 : 9/100
+state 1 [0]
+	action 0 [0]
+		37 : $0
+		85 : $1
+state 2 [0]
+	action 0 [0]
+		38 : $0
+		86 : $1
+state 3 [0]
+	action 0 [0]
+		40 : $0
+		87 : $1
+state 4 [0]
+	action 0 [0]
+		42 : $0
+		88 : $1
+state 5 [0]
+	action 0 [0]
+		45 : $2
+		89 : $3
+state 6 [0]
+	action 0 [0]
+		46 : $2
+		90 : $3
+state 7 [0]
+	action 0 [0]
+		47 : $2
+		91 : $3
+state 8 [0]
+	action 0 [0]
+		49 : $2
+		92 : $3
+state 9 [0]
+	action 0 [0]
+		51 : $4
+		93 : $5
+state 10 [0]
+	action 0 [0]
+		52 : $4
+		94 : $5
+state 11 [0]
+	action 0 [0]
+		53 : $4
+		95 : $5
+state 12 [0]
+	action 0 [0]
+		55 : $4
+		96 : $5
+state 13 [0]
+	action 0 [0]
+		57 : $6
+		97 : $7
+state 14 [0]
+	action 0 [0]
+		58 : $6
+		98 : $7
+state 15 [0]
+	action 0 [0]
+		60 : $6
+		99 : $7
+state 16 [0]
+	action 0 [0]
+		61 : $6
+		100 : $7
+state 17 [0]
+	action 0 [0]
+		63 : $8
+		101 : $9
+state 18 [0]
+	action 0 [0]
+		64 : $8
+		102 : $9
+state 19 [0]
+	action 0 [0]
+		65 : $8
+		103 : $9
+state 20 [0]
+	action 0 [0]
+		66 : $8
+		104 : $9
+state 21 [0]
+	action 0 [0]
+		67 : $10
+		105 : $11
+state 22 [0]
+	action 0 [0]
+		68 : $10
+		106 : $11
+state 23 [0]
+	action 0 [0]
+		69 : $10
+		107 : $11
+state 24 [0]
+	action 0 [0]
+		70 : $10
+		108 : $11
+state 25 [0]
+	action 0 [0]
+		71 : $12
+		109 : $13
+state 26 [0]
+	action 0 [0]
+		72 : $12
+		110 : $13
+state 27 [0]
+	action 0 [0]
+		74 : $12
+		111 : $13
+state 28 [0]
+	action 0 [0]
+		75 : $12
+		112 : $13
+state 29 [0]
+	action 0 [0]
+		77 : $14
+		113 : $15
+state 30 [0]
+	action 0 [0]
+		78 : $14
+		114 : $15
+state 31 [0]
+	action 0 [0]
+		79 : $14
+		115 : $15
+state 32 [0]
+	action 0 [0]
+		80 : $14
+		116 : $15
+state 33 [0]
+	action 0 [0]
+		81 : $16
+		117 : $17
+state 34 [0]
+	action 0 [0]
+		82 : $16
+		118 : $17
+state 35 [0]
+	action 0 [0]
+		83 : $16
+		119 : $17
+state 36 [0]
+	action 0 [0]
+		84 : $16
+		120 : $17
+state 37 [0] goal
+	action 0 [0]
+		37 : 1
+state 38 [0] goal
+	action 0 [0]
+		38 : 1
+state 39 [0] goal
+	action 0 [0]
+		39 : 1
+state 40 [0] goal
+	action 0 [0]
+		40 : 1
+state 41 [0] goal
+	action 0 [0]
+		41 : 1
+state 42 [0] goal
+	action 0 [0]
+		42 : 1
+state 43 [0] goal
+	action 0 [0]
+		43 : 1
+state 44 [0] goal
+	action 0 [0]
+		44 : 1
+state 45 [0] goal
+	action 0 [0]
+		45 : 1
+state 46 [0] goal
+	action 0 [0]
+		46 : 1
+state 47 [0] goal
+	action 0 [0]
+		47 : 1
+state 48 [0] goal
+	action 0 [0]
+		48 : 1
+state 49 [0] goal
+	action 0 [0]
+		49 : 1
+state 50 [0] goal
+	action 0 [0]
+		50 : 1
+state 51 [0] goal
+	action 0 [0]
+		51 : 1
+state 52 [0] goal
+	action 0 [0]
+		52 : 1
+state 53 [0] goal
+	action 0 [0]
+		53 : 1
+state 54 [0] goal
+	action 0 [0]
+		54 : 1
+state 55 [0] goal
+	action 0 [0]
+		55 : 1
+state 56 [0] goal
+	action 0 [0]
+		56 : 1
+state 57 [0] goal
+	action 0 [0]
+		57 : 1
+state 58 [0] goal
+	action 0 [0]
+		58 : 1
+state 59 [0] goal
+	action 0 [0]
+		59 : 1
+state 60 [0] goal
+	action 0 [0]
+		60 : 1
+state 61 [0] goal
+	action 0 [0]
+		61 : 1
+state 62 [0] goal
+	action 0 [0]
+		62 : 1
+state 63 [0] goal
+	action 0 [0]
+		63 : 1
+state 64 [0] goal
+	action 0 [0]
+		64 : 1
+state 65 [0] goal
+	action 0 [0]
+		65 : 1
+state 66 [0] goal
+	action 0 [0]
+		66 : 1
+state 67 [0] goal
+	action 0 [0]
+		67 : 1
+state 68 [0] goal
+	action 0 [0]
+		68 : 1
+state 69 [0] goal
+	action 0 [0]
+		69 : 1
+state 70 [0] goal
+	action 0 [0]
+		70 : 1
+state 71 [0] goal
+	action 0 [0]
+		71 : 1
+state 72 [0] goal
+	action 0 [0]
+		72 : 1
+state 73 [0] goal
+	action 0 [0]
+		73 : 1
+state 74 [0] goal
+	action 0 [0]
+		74 : 1
+state 75 [0] goal
+	action 0 [0]
+		75 : 1
+state 76 [0] goal
+	action 0 [0]
+		76 : 1
+state 77 [0] goal
+	action 0 [0]
+		77 : 1
+state 78 [0] goal
+	action 0 [0]
+		78 : 1
+state 79 [0] goal
+	action 0 [0]
+		79 : 1
+state 80 [0] goal
+	action 0 [0]
+		80 : 1
+state 81 [0] goal
+	action 0 [0]
+		81 : 1
+state 82 [0] goal
+	action 0 [0]
+		82 : 1
+state 83 [0] goal
+	action 0 [0]
+		83 : 1
+state 84 [0] goal
+	action 0 [0]
+		84 : 1
+state 85 [0]
+	action 0 [0]
+		37 : 1
+state 86 [0]
+	action 0 [0]
+		87 : $18
+		88 : $19
+state 87 [1]
+	action 0 [0]
+		38 : $19
+		39 : $18
+state 88 [0]
+	action 0 [0]
+		38 : $19
+		39 : $18
+state 89 [0]
+	action 0 [0]
+		88 : $19
+		89 : $18
+state 90 [1]
+	action 0 [0]
+		40 : $18
+		41 : $19
+state 91 [0]
+	action 0 [0]
+		40 : $18
+		41 : $19
+state 92 [1]
+	action 0 [0]
+		43 : $19
+		44 : $18
+state 93 [0]
+	action 0 [0]
+		45 : 1
+state 94 [0]
+	action 0 [0]
+		91 : $20
+		92 : $21
+state 95 [1]
+	action 0 [0]
+		39 : $20
+		46 : $21
+state 96 [0]
+	action 0 [0]
+		39 : $20
+		46 : $21
+state 97 [0]
+	action 0 [0]
+		92 : $21
+		93 : $20
+state 98 [1]
+	action 0 [0]
+		47 : $20
+		48 : $21
+state 99 [0]
+	action 0 [0]
+		47 : $20
+		48 : $21
+state 100 [1]
+	action 0 [0]
+		44 : $20
+		50 : $21
+state 101 [0]
+	action 0 [0]
+		51 : 1
+state 102 [0]
+	action 0 [0]
+		95 : $22
+		96 : $23
+state 103 [1]
+	action 0 [0]
+		39 : $22
+		52 : $23
+state 104 [0]
+	action 0 [0]
+		39 : $22
+		52 : $23
+state 105 [0]
+	action 0 [0]
+		96 : $23
+		97 : $22
+state 106 [1]
+	action 0 [0]
+		53 : $22
+		54 : $23
+state 107 [0]
+	action 0 [0]
+		53 : $22
+		54 : $23
+state 108 [1]
+	action 0 [0]
+		44 : $22
+		56 : $23
+state 109 [0]
+	action 0 [0]
+		57 : 1
+state 110 [0]
+	action 0 [0]
+		99 : $24
+		100 : $25
+state 111 [1]
+	action 0 [0]
+		58 : $25
+		59 : $24
+state 112 [0]
+	action 0 [0]
+		58 : $25
+		59 : $24
+state 113 [0]
+	action 0 [0]
+		100 : $25
+		101 : $24
+state 114 [1]
+	action 0 [0]
+		41 : $25
+		60 : $24
+state 115 [0]
+	action 0 [0]
+		41 : $25
+		60 : $24
+state 116 [1]
+	action 0 [0]
+		43 : $25
+		62 : $24
+state 117 [0]
+	action 0 [0]
+		63 : 1
+state 118 [0]
+	action 0 [0]
+		103 : $26
+		104 : $27
+state 119 [1]
+	action 0 [0]
+		59 : $26
+		64 : $27
+state 120 [0]
+	action 0 [0]
+		59 : $26
+		64 : $27
+state 121 [0]
+	action 0 [0]
+		104 : $27
+		105 : $26
+state 122 [1]
+	action 0 [0]
+		48 : $27
+		65 : $26
+state 123 [0]
+	action 0 [0]
+		48 : $27
+		65 : $26
+state 124 [1]
+	action 0 [0]
+		50 : $27
+		62 : $26
+state 125 [0]
+	action 0 [0]
+		67 : 1
+state 126 [0]
+	action 0 [0]
+		107 : $28
+		108 : $29
+state 127 [1]
+	action 0 [0]
+		59 : $28
+		68 : $29
+state 128 [0]
+	action 0 [0]
+		59 : $28
+		68 : $29
+state 129 [0]
+	action 0 [0]
+		108 : $29
+		109 : $28
+state 130 [1]
+	action 0 [0]
+		54 : $29
+		69 : $28
+state 131 [0]
+	action 0 [0]
+		54 : $29
+		69 : $28
+state 132 [1]
+	action 0 [0]
+		56 : $29
+		62 : $28
+state 133 [0]
+	action 0 [0]
+		71 : 1
+state 134 [0]
+	action 0 [0]
+		111 : $30
+		112 : $31
+state 135 [1]
+	action 0 [0]
+		72 : $31
+		73 : $30
+state 136 [0]
+	action 0 [0]
+		72 : $31
+		73 : $30
+state 137 [0]
+	action 0 [0]
+		112 : $31
+		113 : $30
+state 138 [1]
+	action 0 [0]
+		41 : $31
+		74 : $30
+state 139 [0]
+	action 0 [0]
+		41 : $31
+		74 : $30
+state 140 [1]
+	action 0 [0]
+		43 : $31
+		76 : $30
+state 141 [0]
+	action 0 [0]
+		77 : 1
+state 142 [0]
+	action 0 [0]
+		115 : $32
+		116 : $33
+state 143 [1]
+	action 0 [0]
+		73 : $32
+		78 : $33
+state 144 [0]
+	action 0 [0]
+		73 : $32
+		78 : $33
+state 145 [0]
+	action 0 [0]
+		116 : $33
+		117 : $32
+state 146 [1]
+	action 0 [0]
+		48 : $33
+		79 : $32
+state 147 [0]
+	action 0 [0]
+		48 : $33
+		79 : $32
+state 148 [1]
+	action 0 [0]
+		50 : $33
+		76 : $32
+state 149 [0]
+	action 0 [0]
+		81 : 1
+state 150 [0]
+	action 0 [0]
+		119 : $34
+		120 : $35
+state 151 [1]
+	action 0 [0]
+		73 : $34
+		82 : $35
+state 152 [0]
+	action 0 [0]
+		73 : $34
+		82 : $35
+state 153 [0]
+	action 0 [0]
+		120 : $35
+		121 : $34
+state 154 [1]
+	action 0 [0]
+		54 : $35
+		83 : $34
+state 155 [0]
+	action 0 [0]
+		54 : $35
+		83 : $34
+state 156 [1]
+	action 0 [0]
+		56 : $35
+		76 : $34

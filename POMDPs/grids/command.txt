@@ -1,0 +1,1 @@
+[path to stormpomdp]/storm-pomdp --parametric-drn [outputfile name].drn --prism 4x4grid.prism --prop "Rmin=? [F \"goal\"]" --transformsimple --exact --memorybound [memory bound] --memorypattern settablebits --constant-reward

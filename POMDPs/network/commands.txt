@@ -1,0 +1,5 @@
+%% packets_sent
+[path to stormpomdp]/storm-pomdp --parametric-drn [outputfile name].drn --prism network2_priorities_packets_sent.prism --prop packets_sent.props --exact --memorybound [memory bounds --memorypattern settablebits --constants [constants K and T] --transformsimple --constant-reward
+
+%% dropped packets
+[path to stormpomdp]/storm-pomdp --parametric-drn [outputfile name].drn --prism network2_priorities_dropped_packets.prism --prop dropped_packets.props --exact --memorybound [memory bound] --memorypattern settablebits --constants [constants K and T] --transformsimple --constant-reward

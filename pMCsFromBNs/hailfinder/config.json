@@ -1,0 +1,24 @@
+[
+  {
+		"memory_bound": [1],
+		"constants": {
+		},
+		"drn": ["hailfinder_2000.drn"],
+		"prop": [
+			{
+				"type": "probability",
+				"dir": "max",
+				"bound": null,
+				"label": "Dewpoints0"
+			},
+			{
+				"type": "probability",
+				"dir": "max",
+				"bound": 0.145,
+				"label": "Dewpoints0"
+			}
+		],
+		"learning_rate": [0.1],
+		"method": ["adam", "radam","momentum-sign", "qcqp", "pso"]
+	}
+]

@@ -1,0 +1,843 @@
+﻿{
+	"jani-version": 1,
+	"name": "firewire_abst-ppta",
+	"type": "mdp",
+	"features": [ "derived-operators" ],
+	"actions": [ {
+		"name": "tick"
+	} ],
+	"constants": [ {
+		"name": "fast",
+		"type": "real"
+	} ],
+	"variables": [
+		{
+			"name": "done",
+			"type": "bool",
+			"transient": true,
+			"initial-value": false
+		},
+		{
+			"name": "s",
+			"type": {
+				"kind": "bounded",
+				"base": "int",
+				"lower-bound": 0,
+				"upper-bound": 9
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "x",
+			"type": {
+				"kind": "bounded",
+				"base": "int",
+				"lower-bound": 0,
+				"upper-bound": 1671
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "global_time",
+			"type": {
+				"kind": "bounded",
+				"base": "int",
+				"lower-bound": 0,
+				"upper-bound": 601
+			},
+			"initial-value": 0
+		}
+	],
+	"properties": [ {
+		"name": "deadline600",
+		"expression": {
+			"op": "filter",
+			"fun": "values",
+			"values": {
+				"op": "≤",
+				"left": {
+					"op": "Pmax",
+					"exp": {
+						"op": "U",
+						"left": {
+							"op": "≤",
+							"left": "global_time",
+							"right": 600
+						},
+						"right": "done"
+					}
+				},
+				"right": {
+					"op": "/",
+					"left": 25,
+					"right": 100
+				}
+			},
+			"states": {
+				"op": "initial"
+			}
+		}
+	} ],
+	"automata": [
+		{
+			"name": "abstract_firewire",
+			"locations": [ {
+				"name": "l",
+				"transient-values": [
+					{
+						"ref": "done",
+						"value": {
+							"op": "=",
+							"left": "s",
+							"right": 9
+						},
+						"comment": "done <- (s = 9)"
+					}
+				]
+			} ],
+			"initial-locations": [ "l" ],
+			"edges": [
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "s",
+							"right": 0
+						},
+						"comment": "(s = 0)"
+					},
+					"destinations": [
+						{
+							"location": "l",
+							"probability": {
+								"exp": "fast",
+								"comment": "fast"
+							},
+							"assignments": [ {
+								"ref": "s",
+								"value": 1,
+								"comment": "s <- 1"
+							} ]
+						},
+						{
+							"location": "l",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "fast"
+								},
+								"comment": "(1 - fast)"
+							},
+							"assignments": [ {
+								"ref": "s",
+								"value": 4,
+								"comment": "s <- 4"
+							} ]
+						}
+					]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "s",
+							"right": 0
+						},
+						"comment": "(s = 0)"
+					},
+					"destinations": [
+						{
+							"location": "l",
+							"probability": {
+								"exp": "fast",
+								"comment": "fast"
+							},
+							"assignments": [ {
+								"ref": "s",
+								"value": 2,
+								"comment": "s <- 2"
+							} ]
+						},
+						{
+							"location": "l",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "fast"
+								},
+								"comment": "(1 - fast)"
+							},
+							"assignments": [ {
+								"ref": "s",
+								"value": 3,
+								"comment": "s <- 3"
+							} ]
+						}
+					]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "s",
+							"right": 1
+						},
+						"comment": "(s = 1)"
+					},
+					"destinations": [
+						{
+							"location": "l",
+							"probability": {
+								"exp": "fast",
+								"comment": "fast"
+							},
+							"assignments": [
+								{
+									"ref": "s",
+									"value": 5,
+									"comment": "s <- 5"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						},
+						{
+							"location": "l",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "fast"
+								},
+								"comment": "(1 - fast)"
+							},
+							"assignments": [
+								{
+									"ref": "s",
+									"value": 6,
+									"comment": "s <- 6"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "s",
+							"right": 2
+						},
+						"comment": "(s = 2)"
+					},
+					"destinations": [
+						{
+							"location": "l",
+							"probability": {
+								"exp": "fast",
+								"comment": "fast"
+							},
+							"assignments": [
+								{
+									"ref": "s",
+									"value": 5,
+									"comment": "s <- 5"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						},
+						{
+							"location": "l",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "fast"
+								},
+								"comment": "(1 - fast)"
+							},
+							"assignments": [
+								{
+									"ref": "s",
+									"value": 7,
+									"comment": "s <- 7"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "s",
+							"right": 3
+						},
+						"comment": "(s = 3)"
+					},
+					"destinations": [
+						{
+							"location": "l",
+							"probability": {
+								"exp": "fast",
+								"comment": "fast"
+							},
+							"assignments": [
+								{
+									"ref": "s",
+									"value": 6,
+									"comment": "s <- 6"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						},
+						{
+							"location": "l",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "fast"
+								},
+								"comment": "(1 - fast)"
+							},
+							"assignments": [
+								{
+									"ref": "s",
+									"value": 8,
+									"comment": "s <- 8"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "s",
+							"right": 4
+						},
+						"comment": "(s = 4)"
+					},
+					"destinations": [
+						{
+							"location": "l",
+							"probability": {
+								"exp": "fast",
+								"comment": "fast"
+							},
+							"assignments": [
+								{
+									"ref": "s",
+									"value": 7,
+									"comment": "s <- 7"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						},
+						{
+							"location": "l",
+							"probability": {
+								"exp": {
+									"op": "-",
+									"left": 1,
+									"right": "fast"
+								},
+								"comment": "(1 - fast)"
+							},
+							"assignments": [
+								{
+									"ref": "s",
+									"value": 8,
+									"comment": "s <- 8"
+								},
+								{
+									"ref": "x",
+									"value": 0,
+									"comment": "x <- 0"
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "s",
+								"right": 5
+							},
+							"right": {
+								"op": "≥",
+								"left": "x",
+								"right": 760
+							}
+						},
+						"comment": "((s = 5) & (x >= 760))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "s",
+								"value": 0,
+								"comment": "s <- 0"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "s",
+								"right": 5
+							},
+							"right": {
+								"op": "≥",
+								"left": "x",
+								"right": 400
+							}
+						},
+						"comment": "((s = 5) & (x >= (760 - 360)))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "s",
+								"value": 9,
+								"comment": "s <- 9"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "s",
+								"right": 6
+							},
+							"right": {
+								"op": "≥",
+								"left": "x",
+								"right": 1230
+							}
+						},
+						"comment": "((s = 6) & (x >= (1590 - 360)))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "s",
+								"value": 9,
+								"comment": "s <- 9"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "s",
+								"right": 7
+							},
+							"right": {
+								"op": "≥",
+								"left": "x",
+								"right": 1230
+							}
+						},
+						"comment": "((s = 7) & (x >= (1590 - 360)))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "s",
+								"value": 9,
+								"comment": "s <- 9"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "s",
+								"right": 8
+							},
+							"right": {
+								"op": "≥",
+								"left": "x",
+								"right": 1590
+							}
+						},
+						"comment": "((s = 8) & (x >= 1590))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "s",
+								"value": 0,
+								"comment": "s <- 0"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "=",
+								"left": "s",
+								"right": 8
+							},
+							"right": {
+								"op": "≥",
+								"left": "x",
+								"right": 1230
+							}
+						},
+						"comment": "((s = 8) & (x >= (1590 - 360)))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [
+							{
+								"ref": "s",
+								"value": 9,
+								"comment": "s <- 9"
+							},
+							{
+								"ref": "x",
+								"value": 0,
+								"comment": "x <- 0"
+							}
+						]
+					} ]
+				},
+				{
+					"location": "l",
+					"guard": {
+						"exp": {
+							"op": "=",
+							"left": "s",
+							"right": 9
+						},
+						"comment": "(s = 9)"
+					},
+					"destinations": [ {
+						"location": "l"
+					} ]
+				},
+				{
+					"location": "l",
+					"action": "tick",
+					"guard": {
+						"exp": {
+							"op": "∧",
+							"left": {
+								"op": "∧",
+								"left": {
+									"op": "∧",
+									"left": {
+										"op": "∧",
+										"left": {
+											"op": "∧",
+											"left": {
+												"op": "∧",
+												"left": {
+													"op": "∧",
+													"left": {
+														"op": "∧",
+														"left": {
+															"op": "∨",
+															"left": {
+																"op": "≠",
+																"left": "s",
+																"right": 8
+															},
+															"right": {
+																"op": "<",
+																"left": "x",
+																"right": 1670
+															}
+														},
+														"right": {
+															"op": "∨",
+															"left": {
+																"op": "≠",
+																"left": "s",
+																"right": 1
+															},
+															"right": {
+																"op": "<",
+																"left": "x",
+																"right": 360
+															}
+														}
+													},
+													"right": {
+														"op": "∨",
+														"left": {
+															"op": "≠",
+															"left": "s",
+															"right": 4
+														},
+														"right": {
+															"op": "<",
+															"left": "x",
+															"right": 360
+														}
+													}
+												},
+												"right": {
+													"op": "∨",
+													"left": {
+														"op": "≠",
+														"left": "s",
+														"right": 6
+													},
+													"right": {
+														"op": "<",
+														"left": "x",
+														"right": 1670
+													}
+												}
+											},
+											"right": {
+												"op": "∨",
+												"left": {
+													"op": "≠",
+													"left": "s",
+													"right": 2
+												},
+												"right": {
+													"op": "<",
+													"left": "x",
+													"right": 360
+												}
+											}
+										},
+										"right": {
+											"op": "∨",
+											"left": {
+												"op": "≠",
+												"left": "s",
+												"right": 7
+											},
+											"right": {
+												"op": "<",
+												"left": "x",
+												"right": 1670
+											}
+										}
+									},
+									"right": {
+										"op": "∨",
+										"left": {
+											"op": "≠",
+											"left": "s",
+											"right": 0
+										},
+										"right": {
+											"op": "<",
+											"left": "x",
+											"right": 360
+										}
+									}
+								},
+								"right": {
+									"op": "∨",
+									"left": {
+										"op": "≠",
+										"left": "s",
+										"right": 5
+									},
+									"right": {
+										"op": "<",
+										"left": "x",
+										"right": 850
+									}
+								}
+							},
+							"right": {
+								"op": "∨",
+								"left": {
+									"op": "≠",
+									"left": "s",
+									"right": 3
+								},
+								"right": {
+									"op": "<",
+									"left": "x",
+									"right": 360
+								}
+							}
+						},
+						"comment": "((((((((((s = 0) => (x <= 360)) & ((s = 1) => (x <= 360))) & ((s = 2) => (x <= 360))) & ((s = 3) => (x <= 360))) & ((s = 4) => (x <= 360))) & ((s = 5) => (x <= 850))) & ((s = 6) => (x <= 1670))) & ((s = 7) => (x <= 1670))) & ((s = 8) => (x <= 1670)))"
+					},
+					"destinations": [ {
+						"location": "l",
+						"assignments": [ {
+							"ref": "done",
+							"value": {
+								"op": "=",
+								"left": "s",
+								"right": 9
+							},
+							"index": 1,
+							"comment": "done <- (s = 9)"
+						} ]
+					} ]
+				}
+			]
+		},
+		{
+			"name": "GlobalSync",
+			"locations": [ {
+				"name": "loop_loc"
+			} ],
+			"initial-locations": [ "loop_loc" ],
+			"edges": [
+				{
+					"location": "loop_loc",
+					"action": "tick",
+					"destinations": [ {
+						"location": "loop_loc",
+						"assignments": [
+							{
+								"ref": "x",
+								"value": {
+									"op": "min",
+									"left": {
+										"op": "+",
+										"left": "x",
+										"right": 1
+									},
+									"right": 1671
+								}
+							},
+							{
+								"ref": "global_time",
+								"value": {
+									"op": "min",
+									"left": {
+										"op": "+",
+										"left": "global_time",
+										"right": 1
+									},
+									"right": 601
+								}
+							}
+						]
+					} ]
+				}
+			]
+		}
+	],
+	"system": {
+		"elements": [
+			{
+				"automaton": "abstract_firewire"
+			},
+			{
+				"automaton": "GlobalSync"
+			}
+		],
+		"syncs": [ {
+			"synchronise": [
+				"tick",
+				"tick"
+			],
+			"result": "tick"
+		} ]
+	}
+}
